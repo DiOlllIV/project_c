@@ -58,11 +58,9 @@
   padding: 4px;
 }
 .arrow__right {
-  transform: rotate(-45deg);
   -webkit-transform: rotate(-45deg);
 }
 .arrow__left {
-  transform: rotate(135deg);
   -webkit-transform: rotate(135deg);
 }
 
