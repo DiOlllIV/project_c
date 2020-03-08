@@ -119,9 +119,6 @@
 .box-day:first-child {
   padding-left: 78px;
 }
-.box-day:last-child {
-  padding-right: 16px;
-}
 .box-day__week {
   font-size: 12px;
   margin: 8px;
