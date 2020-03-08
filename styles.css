@@ -14,6 +14,7 @@
   box-shadow: 0px 2px 8px -5px;
   border-style: none;
   background-color: rgba(250, 250, 250, 0.9);
+  cursor: pointer;
 }
 .create-btn__icon {
   margin: 8px 14px;
@@ -33,18 +34,21 @@
   font-size: 14px;
   color: #2d5050;
   background-color: rgba(250, 250, 250, 0.9);
+  cursor: pointer;
 }
 
 .btn-left {
   margin: auto 10px auto 32px;
   border-style: none;
   background-color: rgba(250, 250, 250, 0.9);
+  cursor: pointer;
 }
 
 .btn-right {
   margin: auto 0;
   border-style: none;
   background-color: rgba(250, 250, 250, 0.9);
+  cursor: pointer;
 }
 
 .arrow {
@@ -178,6 +182,7 @@
   border-bottom: 2px solid rgba(0, 0, 255, 0.5);
   background-color: rgba(250, 250, 250, 0.9);
   box-shadow: 0px 0px 8px -4px;
+  cursor: pointer;
 }
 .pop-up__comment {
   height: 40%;
@@ -187,6 +192,7 @@
   border-radius: 8px;
   background-color: rgba(250, 250, 250, 0.9);
   text-align: center;
+  cursor: pointer;
 }
 
 .exit-btn {
@@ -194,6 +200,11 @@
   width: 14px;
   height: 14px;
   border: none;
+  padding: 0;
+  cursor: pointer;
+}
+.exit-btn__icon {
+  height: 14px;
   background-color: #000000;
   clip-path: polygon(10% 0%, 0% 10%, 40% 50%, 0 90%, 10% 100%, 50% 60%, 90% 100%, 100% 90%, 60% 50%, 100% 10%, 90% 0, 50% 40%);
   box-shadow: 0px 2px 8px -5px;
@@ -203,6 +214,7 @@
   display: flex;
   margin: auto;
   flex-wrap: wrap;
+  cursor: pointer;
 }
 .time-set__style {
   margin: 8px;
@@ -222,6 +234,7 @@
   color: white;
   background-color: #6496eb;
   font-size: 14px;
+  cursor: pointer;
 }
 
 * {
