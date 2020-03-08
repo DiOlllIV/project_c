@@ -218,10 +218,15 @@
             </div>
         </div>
         <div class="pop-up">
-            <button class="exit-btn"><i></i></button>
+            <button class="exit-btn"><div class="exit-btn__icon"></div></button>
             <input class="pop-up__title" type="text" value="Add Title">
-            <div class="time-title">Day Month Year 00:00 - 00:00</div>
+            <div class="time-set">
+                <input class="time-set__style time-set__date" type="date"></input>
+                <input class="time-set__style time-set__start" type="time"></input>
+                <input class="time-set__style time-set__end" type="time"></input>
+            </div>
             <textarea class="pop-up__comment" type="comment">Add Comments</textarea>
+            <button class="save-btn">Save</button>
         </div>
     </section>
 
