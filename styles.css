@@ -87,13 +87,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-top: 28px;
-}
-.time-column__line:first-child {
-  padding-top: 0;
-}
-.time-column__line:nth-child(2) {
-  padding-top: 20px;
+  padding-top: 38px;
 }
 
 .calendar-column {
@@ -163,6 +157,7 @@
 }
 
 .pop-up {
+  visibility: hidden;
   display: flex;
   flex-direction: column;
   position: absolute;
