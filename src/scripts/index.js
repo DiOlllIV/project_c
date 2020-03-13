@@ -1,62 +1,63 @@
-const generateColumn = (from, to) => {
-    const result = [];
-
-    for (let i = from; i <= to; i++) {
-        result.push(i);
-    }
-
-    return result;
-};
-
-
-const getTimeColumn = () =>
-    generateColumn(1, 23)
-    .map(timeItem => `
-        <div
-            class="time-column__line"
-            data-line-number="${timeItem}"
-        >${ timeItem  <= 9 
-            ? `0${timeItem}:00` :
-             `${timeItem}:00`}</div>
-        `).join('');
-
-const getDaysEvents = () =>
-            generateColumn(1,24)
-            .map(daysEvents => `
-            <div
-                class="calendar-section__item"
-                data-line-number="${daysEvents}"
-            ></div>
-            `).join('');
-       
-            
-const daysEvents = getDaysEvents();    
-const getDaysColumn = () =>  
-        generateColumn(1,7)
-        .map(daysColumn => `
-        <div
-            class="calendar-section"
-            data-event-number="${daysColumn}"
-        >${daysEvents}</div>
-        `).join('');
-
-
-const timeColumn = document.querySelector('.calendar-column');
-const renderTimeColumn = () => {
-    const timeLine = getTimeColumn();
-    const daysColumn = getDaysColumn();
-    const timeSectors = generateColumn(1, 1)
-        .map(lineTime => `
-        <div
-            class='time-column'
-            data-column-number ="${lineTime}"
-        >${timeLine}</div>
-        <div
-        class='calendar-table'
-        data-column-number ="${lineTime}"
-    >${daysColumn}</div>`).join('');
-    timeColumn.innerHTML = timeSectors;
-};
+import { renderTimeColumn, generateNumbers } from './events.js';
 
 
 renderTimeColumn();
+
+let today = new Date();
+let weekDay = new Date().getDay() - 1;
+const daysLine = document.querySelector('.week-line');
+const week = ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'];
+const firstDay = 0;
+
+
+const getMonday = () => {
+    while (today.getDay() !== 1) {
+        today.setDate(today.getDate() - 1);
+    }
+};
+
+getMonday();
+
+const getDays = () => {
+    const result = [];
+    generateNumbers(0, 6).map(day => {
+        const newDay = new Date(today);
+        newDay.setDate(newDay.getDate() + day);
+
+        result.push(`
+                <div class="box-day">
+                    <span class="box-day__week"
+                    data-day-number="${day+firstDay}">
+                        ${week[new Date(newDay).getDay()]}
+                    </span>
+                    <span class="box-day__month"
+                    data-date-number="${day+firstDay}">
+                    ${new Date(newDay).getDate()}</span>
+                </div>`);
+    });
+
+    return result.join('');
+};
+
+const renderDays = () => {
+    daysLine.innerHTML = getDays();
+    document.querySelector(`[data-day-number="${weekDay}"]`).classList.add('box-day__week__today')
+    document.querySelector(`[data-date-number="${weekDay}"]`).classList.add('box-day__month__today')
+};
+
+const getWeekAfter = () => {
+    const days = document.querySelectorAll('.box-day__month');
+    for (let num of days) { num.innerHTML = Number(num.textContent) + 7 };
+};
+const getWeekBefore = () => {
+    const days = document.querySelectorAll('.box-day__month');
+    for (let num of days) { num.innerHTML = Number(num.textContent) - 7 };
+};
+
+
+const btnRight = document.querySelector('.btn-right');
+btnRight.addEventListener('click', getWeekAfter, false);
+const btnLeft = document.querySelector('.btn-left');
+btnLeft.addEventListener('click', getWeekBefore, false);
+
+renderDays();
