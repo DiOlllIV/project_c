@@ -25,7 +25,8 @@ const getDays = () => {
         newDay.setDate(newDay.getDate() + day);
 
         result.push(`
-                <div class="box-day">
+                <div class="box-day"
+                 data-event-number="${day+1}">
                     <span class="box-day__week"
                     data-day-number="${day+zeroDay}">
                         ${week[new Date(newDay).getDay()]}
@@ -101,6 +102,5 @@ const getActualWeek = () => {
     renderDays();
     setCurrMonth();
     markToday();
-    checkTime();
 };
 todayBtn.addEventListener('click', getActualWeek);
