@@ -1,0 +1,19 @@
+.redline {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    &__ball {
+        display: block;
+        background-color: rgba(230, 10, 10, 0.9);
+        width: 8px;
+        height: 8px;
+        border-radius: 100%;
+    }
+    &__line {
+        display: block;
+        background-color: rgb(230, 10, 10, 0.9);
+        width: 50px;
+        height: 3px;
+        border-radius: 3px;
+    }
+}

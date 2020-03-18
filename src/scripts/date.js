@@ -1,11 +1,12 @@
 import { generateNumbers } from './events.js';
+import { setTimeRedline, moveRedline } from './redline.js';
 
 let today = new Date();
 let monthDay = new Date().getDate();
 let weekDay = new Date().getDay() - 1;
 const daysLine = document.querySelector('.week-line');
 const week = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
-let firstDay = 0;
+let zeroDay = 0;
 
 
 export const getMonday = () => {
@@ -27,7 +28,7 @@ const getDays = () => {
         result.push(`
                 <div class="box-day">
                     <span class="box-day__week"
-                    data-day-number="${day+firstDay}">
+                    data-day-number="${day+zeroDay}">
                         ${week[new Date(newDay).getDay()]}
                     </span>
                     <span class="box-day__month"
@@ -47,6 +48,7 @@ export const renderDays = () => {
 export const markToday = () => {
     document.querySelector(`[data-day-number="${weekDay}"]`).classList.add('box-day__week__today');
     document.querySelector(`[data-date-number="${monthDay}"]`).classList.add('box-day__month__today');
+    document.querySelector(`[data-date-number="${monthDay}"]`).parentElement.classList.add('box-day__today');
 };
 
 /* Get month */
@@ -74,7 +76,7 @@ export const setCurrMonth = () => {
 const rightBtn = document.querySelector('.btn-right');
 const getNextWeek = () => {
     today.setDate(today.getDate() + 7);
-    firstDay += 7;
+    zeroDay += 7;
     renderDays();
     setCurrMonth();
     markToday();
@@ -84,7 +86,7 @@ rightBtn.addEventListener('click', getNextWeek);
 const leftBtn = document.querySelector('.btn-left');
 const getPriviousWeek = () => {
     today.setDate(today.getDate() - 7);
-    firstDay -= 7;
+    zeroDay -= 7;
     renderDays();
     setCurrMonth();
     markToday();
@@ -95,10 +97,11 @@ leftBtn.addEventListener('click', getPriviousWeek);
 const todayBtn = document.querySelector('.today-btn');
 const getActualWeek = () => {
     today = new Date();
-    firstDay = 0;
+    zeroDay = 0;
     getMonday();
     renderDays();
     setCurrMonth();
     markToday();
+    checkTime();
 };
 todayBtn.addEventListener('click', getActualWeek);

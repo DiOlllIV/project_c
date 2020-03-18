@@ -1,7 +1,3 @@
-.calendar {
-    position: relative;
-}
-
 .time-column {
     display: flex;
     flex-direction: column;
@@ -18,6 +14,7 @@
 }
 
 .calendar-column {
+    position: relative;
     display: flex;
     height: calc(100vh - 164px);
     overflow: auto;

@@ -54,6 +54,11 @@ export const renderTimeColumn = () => {
         <div
         class='calendar-table'
         data-column-number ="${lineTime}"
-    >${daysColumn}</div>`).join('');
+    >${daysColumn}</div>
+        <div class='redline'>
+            <span class="redline__ball"></span>
+            <span class="redline__line"></span>
+        </div>
+    `).join('');
     timeColumn.innerHTML = timeSectors;
 };
