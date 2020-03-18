@@ -1,5 +1,4 @@
 import { generateNumbers } from './events.js';
-import { setTimeRedline, moveRedline } from './redline.js';
 
 let today = new Date();
 let monthDay = new Date().getDate();

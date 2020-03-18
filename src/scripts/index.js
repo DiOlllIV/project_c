@@ -1,5 +1,5 @@
-import { getMonday, renderDays, markToday, setCurrMonth, checkTime } from './date.js';
-
+import { getMonday, renderDays, markToday, setCurrMonth } from './date.js';
+import { renderTimeColumn } from './events.js';
 
 
 renderTimeColumn();
