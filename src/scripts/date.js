@@ -1,8 +1,10 @@
-import { generateNumbers } from './events.js';
+import { generateNumbers, renderTimeColumn } from './events.js';
+import { moveRedline, setRedline } from './redline.js';
 
 let today = new Date();
 let monthDay = new Date().getDate();
 let weekDay = new Date().getDay() - 1;
+
 const daysLine = document.querySelector('.week-line');
 const week = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
 let zeroDay = 0;
@@ -14,19 +16,16 @@ export const getMonday = () => {
     }
 };
 
-getMonday();
-
 /* Get Days */
 
 const getDays = () => {
     const result = [];
     generateNumbers(0, 6).map(day => {
+
         const newDay = new Date(today);
         newDay.setDate(newDay.getDate() + day);
-
         result.push(`
-                <div class="box-day"
-                 data-event-number="${day+1}">
+                <div class="box-day">
                     <span class="box-day__week"
                     data-day-number="${day+zeroDay}">
                         ${week[new Date(newDay).getDay()]}
@@ -51,7 +50,8 @@ export const markToday = () => {
     document.querySelector(`[data-date-number="${monthDay}"]`).parentElement.classList.add('box-day__today');
 };
 
-/* Get month */
+
+/* Find a Month */
 
 const monthElem = document.querySelector('.title');
 const month = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
@@ -73,8 +73,10 @@ export const setCurrMonth = () => {
 };
 
 
+/* Navigation */
 const rightBtn = document.querySelector('.btn-right');
 const getNextWeek = () => {
+    getMonday();
     today.setDate(today.getDate() + 7);
     zeroDay += 7;
     renderDays();
@@ -85,6 +87,7 @@ rightBtn.addEventListener('click', getNextWeek);
 
 const leftBtn = document.querySelector('.btn-left');
 const getPriviousWeek = () => {
+    getMonday();
     today.setDate(today.getDate() - 7);
     zeroDay -= 7;
     renderDays();
@@ -102,5 +105,8 @@ const getActualWeek = () => {
     renderDays();
     setCurrMonth();
     markToday();
+    getDaysColumn();
+    moveRedline();
+    setRedline();
 };
 todayBtn.addEventListener('click', getActualWeek);

@@ -8,6 +8,7 @@ export const generateNumbers = (from, to) => {
     return result;
 };
 
+/* Render Table Events */
 
 const getTimeColumn = () =>
     generateNumbers(1, 23)
@@ -21,12 +22,12 @@ const getTimeColumn = () =>
         `).join('');
 
 const getDaysEvents = () =>
-            generateNumbers(1,24)
+            generateNumbers(0,23)
             .map(daysEvents => `
-            <div
-                class="calendar-section__item"
-                data-line-number="${daysEvents}"
-            ></div>
+                <div
+                    class="calendar-section__item"
+                    data-line-number="${daysEvents}"
+                ></div>
             `).join('');
        
             
@@ -34,10 +35,10 @@ const daysEvents = getDaysEvents();
 const getDaysColumn = () =>  
         generateNumbers(1,7)
         .map(daysColumn => `
-        <div
-            class="calendar-section"
-            data-event-number="${daysColumn}"
-        >${daysEvents}</div>
+            <div
+                class="calendar-section"
+                data-event-number="${daysColumn}"
+            >${daysEvents}</div>
         `).join('');
 
 
@@ -47,14 +48,14 @@ export const renderTimeColumn = () => {
     const daysColumn = getDaysColumn();
     const timeSectors = generateNumbers(1, 1)
         .map(lineTime => `
-        <div
-            class='time-column'
-            data-column-number ="${lineTime}"
-        >${timeLine}</div>
-        <div
-        class='calendar-table'
-        data-column-number ="${lineTime}"
-    >${daysColumn}</div>
-    `).join('');
+            <div
+                class='time-column'
+                data-column-number ="${lineTime}"
+            >${timeLine}</div>
+            <div
+                class='calendar-table'
+                data-column-number ="${lineTime}"
+            >${daysColumn}</div>
+        `).join('');
     timeColumn.innerHTML = timeSectors;
 };
