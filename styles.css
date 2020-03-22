@@ -141,12 +141,26 @@
 }
 
 .calendar-section {
+  position: relative;
   width: -webkit-fill-available;
 }
 .calendar-section__item {
   height: 60px;
   border-left: 1px solid #aaaaaa;
   border-bottom: 1px solid #aaaaaa;
+}
+
+.event {
+  position: absolute;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  width: 100%;
+  opacity: 0.9;
+  border-radius: 10px;
+  font-size: 12px;
 }
 
 .redline {
