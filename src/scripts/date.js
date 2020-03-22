@@ -45,9 +45,15 @@ export const renderDays = () => {
 
 /**** Mark today element ****/
 export const markToday = () => {
-    document.querySelector(`[data-day-number="${weekDay}"]`).classList.add('box-day__week__today');
-    document.querySelector(`[data-date-number="${monthDay}"]`).classList.add('box-day__month__today');
-    document.querySelector(`[data-date-number="${monthDay}"]`).parentElement.classList.add('box-day__today');
+    if (weekDay === -1) {
+        document.querySelector(`[data-day-number="6"]`).classList.add('box-day__week__today');
+        document.querySelector(`[data-date-number="${monthDay}"]`).classList.add('box-day__month__today');
+        document.querySelector(`[data-date-number="${monthDay}"]`).parentElement.classList.add('box-day__today');
+    } else {
+        document.querySelector(`[data-day-number="${weekDay}"]`).classList.add('box-day__week__today');
+        document.querySelector(`[data-date-number="${monthDay}"]`).classList.add('box-day__month__today');
+        document.querySelector(`[data-date-number="${monthDay}"]`).parentElement.classList.add('box-day__today');
+    }
 };
 
 
@@ -105,8 +111,5 @@ const getActualWeek = () => {
     renderDays();
     setCurrMonth();
     markToday();
-    getDaysColumn();
-    moveRedline();
-    setRedline();
 };
 todayBtn.addEventListener('click', getActualWeek);

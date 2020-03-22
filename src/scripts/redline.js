@@ -11,22 +11,34 @@ redlineLine.classList.add('redline__line');
 redline.append(redlineBall);
 redline.append(redlineLine);
 
-const hour = new Date().getHours();
-const minutes = Number(new Date().getMinutes());
-
 export function setRedline() {
+    let weekDay = new Date().getDay() - 1;
+    let hour = new Date().getHours();
+    let minutes = Number(new Date().getMinutes());
 
-    const actualDaycolumn = document.querySelector(`[data-event-number = "${new Date().getDay()}"]`);
-    const daysElem = actualDaycolumn.querySelectorAll('[data-line-number]');
+    let actualDaycolumn;
+    let daysElem;
+    let redlineStyle;
+
+    if (weekDay === -1) {
+        actualDaycolumn = document.querySelector(`[data-event-number = "7"]`);
+    } else {
+        actualDaycolumn = document.querySelector(`[data-event-number = "${new Date().getDay()}"]`);
+    }
+
+    daysElem = actualDaycolumn.querySelectorAll('[data-line-number]');
 
     for (let elem of daysElem) {
-        if (Number(elem.getAttribute('data-line-number')) === hour) {
+        if (Number(elem.getAttribute('data-line-number')) === hour)
             elem.append(redline);
-        }
     }
-    document.getElementById('redlineId').style.paddingTop = `${minutes}px`
+
+    redlineStyle = document.getElementById('redlineId').style.paddingTop = `${minutes}px`;
+    return redlineStyle;
 };
 
 export function moveRedline() {
-    let loop = setInterval(setRedline, 60000);
+    let loop;
+    loop = setInterval(setRedline, 30000);
+    return loop;
 };
