@@ -1,4 +1,4 @@
-import { today } from './date.js'
+import { today } from './date.js';
 
 export const generateNumbers = (from, to) => {
     const result = [];
