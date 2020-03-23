@@ -1,7 +1,7 @@
 import { generateNumbers, renderTimeColumn } from './events.js';
 import { moveRedline, setRedline } from './redline.js';
 
-let today = new Date();
+export let today = new Date();
 let monthDay = new Date().getDate();
 let weekDay = new Date().getDay() - 1;
 
@@ -87,7 +87,10 @@ const getNextWeek = () => {
     zeroDay += 7;
     renderDays();
     setCurrMonth();
+    renderTimeColumn();
     markToday();
+    setRedline();
+    moveRedline();
 };
 rightBtn.addEventListener('click', getNextWeek);
 
@@ -98,7 +101,10 @@ const getPriviousWeek = () => {
     zeroDay -= 7;
     renderDays();
     setCurrMonth();
+    renderTimeColumn();
     markToday();
+    setRedline();
+    moveRedline();
 };
 leftBtn.addEventListener('click', getPriviousWeek);
 
@@ -110,6 +116,9 @@ const getActualWeek = () => {
     getMonday();
     renderDays();
     setCurrMonth();
+    renderTimeColumn();
     markToday();
+    setRedline();
+    moveRedline();
 };
 todayBtn.addEventListener('click', getActualWeek);

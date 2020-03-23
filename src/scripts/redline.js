@@ -12,19 +12,15 @@ redline.append(redlineBall);
 redline.append(redlineLine);
 
 export function setRedline() {
-    let weekDay = new Date().getDay() - 1;
+    let monthDay = new Date().getDate();
     let hour = new Date().getHours();
     let minutes = Number(new Date().getMinutes());
 
-    let actualDaycolumn;
+    let actualDaycolumn
     let daysElem;
     let redlineStyle;
 
-    if (weekDay === -1) {
-        actualDaycolumn = document.querySelector(`[data-event-number = "7"]`);
-    } else {
-        actualDaycolumn = document.querySelector(`[data-event-number = "${new Date().getDay()}"]`);
-    }
+    actualDaycolumn = document.querySelector(`div[data-date-number = "${new Date().getDate()}"]`);
 
     daysElem = actualDaycolumn.querySelectorAll('[data-line-number]');
 

@@ -1,3 +1,5 @@
+import { today } from './date.js'
+
 export const generateNumbers = (from, to) => {
     const result = [];
 
@@ -8,6 +10,7 @@ export const generateNumbers = (from, to) => {
     return result;
 };
 
+
 /* Render Table Events */
 
 const getTimeColumn = () =>
@@ -16,8 +19,8 @@ const getTimeColumn = () =>
         <div
             class="time-column__line"
             data-line-number="${timeItem}"
-        >${ timeItem  <= 9 
-            ? `0${timeItem}:00` :
+        >${ timeItem  <= 9 ?
+             `0${timeItem}:00` :
              `${timeItem}:00`}</div>
         `).join('');
 
@@ -32,14 +35,22 @@ const getDaysEvents = () =>
        
             
 const daysEvents = getDaysEvents();    
-const getDaysColumn = () =>  
-        generateNumbers(1,7)
-        .map(daysColumn => `
+const getDaysColumn = () => {
+    const result = [];
+    generateNumbers(0, 6).map(day => {
+
+        const newDay = new Date(today);
+        newDay.setDate(newDay.getDate() + day);
+        result.push(`
             <div
                 class="calendar-section"
-                data-event-number="${daysColumn}"
+                data-date-number="${new Date(newDay).getDate()}"
             >${daysEvents}</div>
-        `).join('');
+        `);
+    });
+
+    return result.join('');
+}; 
 
 
 const timeColumn = document.querySelector('.calendar-column');
