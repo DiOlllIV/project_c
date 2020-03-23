@@ -51,6 +51,7 @@ const renderEventItem = eventItems =>
 
                 elem.append(eventTitle, eventTime, eventComment);
                 elem.setAttribute('id', `${id}`);
+
                 return elem;
             }));
 
@@ -59,7 +60,7 @@ const renderEventItem = eventItems =>
         eventElem.style.top = `${startPos}px`;
         eventElem.style.left = "4px";
         eventElem.style.height = `${eventHeight}px`;
-        console.log(dayColumn);
+        console.log(eventElem);
     });
 
 
