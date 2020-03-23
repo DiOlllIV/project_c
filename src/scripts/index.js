@@ -22,19 +22,21 @@ const events = [
 ];
 
 
-const renderEventItem = eventItems => {
-    for (let i = 0; i < events.length; i++) {
-        const eventDate = new Date(`${events[i].date}`).getDate();
+const renderEventItem = eventItems =>
+    eventItems.forEach(elem => {
+
+        const eventDate = new Date(`${elem.date}`).getDate();
         const dayColumn = document.querySelector(`div[data-date-number = "${eventDate}"]`);
-        const zeroTime = new Date(`${events[i].date}`);
-        const startEvent = new Date(`${events[i].date}, ${events[i].startTime}`);
-        const endEvent = new Date(`${events[i].date}, ${events[i].endTime}`) - new Date(`${events[i].date}, ${events[i].startTime}`);
+        const zeroTime = new Date(`${elem.date}`);
+        const startEvent = new Date(`${elem.date}, ${elem.startTime}`);
+        const endEvent = new Date(`${elem.date}, ${elem.endTime}`) - new Date(`${elem.date}, ${elem.startTime}`);
         const eventHeight = endEvent / 1000 / 60;
         const startPos = (startEvent - zeroTime) / 1000 / 60;
         const id = startEvent;
 
-        const eventItem = eventItems
+        dayColumn.append(...eventItems
             .map(({ title, startTime, endTime, comment }) => {
+
                 const elem = document.createElement('div')
                 elem.classList.add('event');
 
@@ -49,18 +51,17 @@ const renderEventItem = eventItems => {
 
                 elem.append(eventTitle, eventTime, eventComment);
                 elem.setAttribute('id', `${id}`);
-
                 return elem;
-            });
-
-        dayColumn.append(...eventItem);
+            }));
 
         const eventElem = document.getElementById(`${id}`);
         eventElem.style.backgroundColor = "rgb(100, 150, 235)";
         eventElem.style.top = `${startPos}px`;
         eventElem.style.left = "4px";
         eventElem.style.height = `${eventHeight}px`;
-    }
-};
+        console.log(dayColumn);
+    });
+
+
 
 renderEventItem(events);
