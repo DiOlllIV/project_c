@@ -17,13 +17,15 @@ closePopup();
 clickOnItems();
 
 const events = [
-    { title: 'Event1', date: '03-24-2020', startTime: '11:00', endTime: '12:42', comment: 'Create static second event by javascript' },
-    { title: 'Event', date: '03-23-2020', startTime: '13:00', endTime: '17:40', comment: 'Create static event by javascript' }
+    { title: 'Event', date: '03-23-2020', startTime: '13:00', endTime: '17:40', comment: 'Create static event by javascript' },
+    { title: 'Event', date: '04-24-2020', startTime: '11:00', endTime: '14:45', comment: 'Create second static event by javascript' },
+    { title: 'Event', date: '04-25-2020', startTime: '12:00', endTime: '13:45', comment: 'Create second static event by javascript' }
 ];
 
 
-const renderEventItem = eventItems =>
-    eventItems.forEach(elem => {
+const renderEventItem = eventItems => {
+
+    eventItems.filter(elem => {
 
         const eventDate = new Date(`${elem.date}`).getDate();
         const dayColumn = document.querySelector(`div[data-date-number = "${eventDate}"]`);
@@ -34,9 +36,8 @@ const renderEventItem = eventItems =>
         const startPos = (startEvent - zeroTime) / 1000 / 60;
         const id = startEvent;
 
-        dayColumn.append(...eventItems
+        const eventItem = eventItems
             .map(({ title, startTime, endTime, comment }) => {
-
                 const elem = document.createElement('div')
                 elem.classList.add('event');
 
@@ -52,17 +53,20 @@ const renderEventItem = eventItems =>
                 elem.append(eventTitle, eventTime, eventComment);
                 elem.setAttribute('id', `${id}`);
 
+
                 return elem;
-            }));
+
+            });
+        console.log(eventItem);
+        dayColumn.append(...eventItem);
 
         const eventElem = document.getElementById(`${id}`);
         eventElem.style.backgroundColor = "rgb(100, 150, 235)";
         eventElem.style.top = `${startPos}px`;
         eventElem.style.left = "4px";
         eventElem.style.height = `${eventHeight}px`;
-        console.log(eventElem);
+
     });
-
-
+};
 
 renderEventItem(events);
