@@ -45,6 +45,8 @@ const getDaysColumn = () => {
             <div
                 class="calendar-section"
                 data-date-number="${new Date(newDay).getDate()}"
+                data-month-number="${new Date(newDay).getMonth()}"
+                data-full-date-number="${new Date(newDay).getTime()}"
             >${daysEvents}</div>
         `);
     });
@@ -55,6 +57,7 @@ const getDaysColumn = () => {
 
 const timeColumn = document.querySelector('.calendar-column');
 export const renderTimeColumn = () => {
+    
     const timeLine = getTimeColumn();
     const daysColumn = getDaysColumn();
     const timeSectors = generateNumbers(1, 1)
@@ -68,5 +71,6 @@ export const renderTimeColumn = () => {
                 data-column-number ="${lineTime}"
             >${daysColumn}</div>
         `).join('');
+        
     timeColumn.innerHTML = timeSectors;
 };

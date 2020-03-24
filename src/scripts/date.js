@@ -89,11 +89,11 @@ const getNextWeek = () => {
     renderDays();
     setCurrMonth();
     renderTimeColumn();
-
+    renderEventItem(events);
     markToday();
     setRedline();
     moveRedline();
-    renderEventItem(events);
+
 };
 rightBtn.addEventListener('click', getNextWeek);
 
@@ -105,11 +105,11 @@ const getPriviousWeek = () => {
     renderDays();
     setCurrMonth();
     renderTimeColumn();
-
+    renderEventItem(events);
     markToday();
     setRedline();
     moveRedline();
-    renderEventItem(events);
+
 };
 leftBtn.addEventListener('click', getPriviousWeek);
 
@@ -122,10 +122,9 @@ const getActualWeek = () => {
     renderDays();
     setCurrMonth();
     renderTimeColumn();
-    renderEventItem(events);
     markToday();
     setRedline();
     moveRedline();
-
+    renderEventItem(events);
 };
 todayBtn.addEventListener('click', getActualWeek);

@@ -12,7 +12,7 @@ redline.append(redlineBall);
 redline.append(redlineLine);
 
 export function setRedline() {
-    let monthDay = new Date().getDate();
+
     let hour = new Date().getHours();
     let minutes = Number(new Date().getMinutes());
 
@@ -20,8 +20,7 @@ export function setRedline() {
     let daysElem;
     let redlineStyle;
 
-    actualDaycolumn = document.querySelector(`div[data-date-number = "${new Date().getDate()}"]`);
-
+    actualDaycolumn = document.querySelector(`div[data-date-number = "${new Date().getDate()}"][data-month-number = "${new Date().getMonth()}"]`);
     daysElem = actualDaycolumn.querySelectorAll('[data-line-number]');
 
     for (let elem of daysElem) {
