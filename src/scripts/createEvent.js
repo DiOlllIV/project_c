@@ -1,10 +1,4 @@
-export const events = [
-    { title: 'Event', startDate: '2020-03-23 13:00', endDate: '03-23-2020 17:40', comment: 'Create static event by javascript' },
-    { title: 'Event', startDate: '04-24-2020 11:00', endDate: '04-24-2020 14:45', comment: 'Create second static event by javascript' },
-    { title: 'Seventy-two week', startDate: '03-28-2020 00:10', endDate: '03-28-2020 02:00', comment: 'U.D.R.P.A' },
-    { title: 'BD D', startDate: '09-20-2020 12:10', endDate: '09-20-2020 18:00', comment: 'Birth Day' },
-    { title: 'Event', startDate: '04-25-2020 12:00', endDate: '04-25-2020 13:45', comment: 'Create second static event by javascript' }
-];
+export const events = [];
 
 export const clearTable = () => {
     const elements = document.querySelectorAll('.event');
