@@ -99,8 +99,8 @@ export const renderEventItem = eventItems => {
             elem.append(deleteBtn)
 
             for (let sect of document.querySelectorAll('.calendar-section')) {
-                if (Number(new Date(startDate).getMonth()) === Number(sect.getAttribute('data-month-number'))) {
-
+                if (Number(new Date(startDate).getMonth()) === Number(sect.getAttribute('data-month-number')) &&
+                    Number(new Date(startDate).getDate()) === Number(sect.getAttribute('data-date-number'))) {
                     return dayColumn.append(elem);
                 }
             }

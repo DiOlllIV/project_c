@@ -46,7 +46,6 @@ const getDaysColumn = () => {
                 class="calendar-section"
                 data-date-number="${new Date(newDay).getDate()}"
                 data-month-number="${new Date(newDay).getMonth()}"
-                data-full-date-number="${new Date(newDay).getTime()}"
             >${daysEvents}</div>
         `);
     });
