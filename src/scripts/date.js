@@ -1,6 +1,6 @@
 import { generateNumbers, renderTimeColumn } from './events.js';
 import { moveRedline, setRedline } from './redline.js';
-import { renderEventItem, events, createEvent, deleteBtn } from './index.js';
+import { renderEventItem, events, createEvent, deleteBtn, clearTable } from './index.js';
 import { clickOnItems } from './popup.js';
 
 export let today = new Date();
@@ -84,6 +84,7 @@ export const setCurrMonth = () => {
 /* Navigation */
 const rightBtn = document.querySelector('.btn-right');
 const getNextWeek = () => {
+    console.log(events);
     getMonday();
     today.setDate(today.getDate() + 7);
     zeroDay += 7;
@@ -91,18 +92,17 @@ const getNextWeek = () => {
     setCurrMonth();
     renderTimeColumn();
     renderEventItem(events);
-    createEvent();
     clickOnItems();
     deleteBtn();
     markToday();
     setRedline();
     moveRedline();
-
 };
 rightBtn.addEventListener('click', getNextWeek);
 
 const leftBtn = document.querySelector('.btn-left');
 const getPriviousWeek = () => {
+    console.log(events);
     getMonday();
     today.setDate(today.getDate() - 7);
     zeroDay -= 7;
@@ -110,13 +110,11 @@ const getPriviousWeek = () => {
     setCurrMonth();
     renderTimeColumn();
     renderEventItem(events);
-    createEvent();
     clickOnItems();
     deleteBtn();
     markToday();
     setRedline();
     moveRedline();
-
 };
 leftBtn.addEventListener('click', getPriviousWeek);
 
@@ -130,12 +128,10 @@ const getActualWeek = () => {
     setCurrMonth();
     renderTimeColumn();
     renderEventItem(events);
-    createEvent();
     clickOnItems();
     deleteBtn();
     markToday();
     setRedline();
     moveRedline();
-
 };
 todayBtn.addEventListener('click', getActualWeek);

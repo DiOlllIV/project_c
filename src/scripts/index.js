@@ -25,17 +25,21 @@ export const events = [
     { title: 'Event', startDate: '04-25-2020 12:00', endDate: '04-25-2020 13:45', comment: 'Create second static event by javascript' }
 ];
 
+export const clearTable = () => {
+    const elements = document.querySelectorAll('.event');
+    for (let eve of elements) {
+        eve.remove();
+    }
+};
 
 export const renderEventItem = eventItems => {
     let dayColumn;
     let eventHeight;
     let startPos;
     let id;
-    const elements = document.querySelectorAll('.event');
-    for (let eve of elements) {
-        eve.remove();
-    }
-    eventItems.sort((a, b) => b.startDate - a.startDate)
+
+    clearTable();
+    eventItems
         .map(({ title, startDate, endDate, comment }) => {
             const eventDate = new Date(`${startDate}`).getDate();
             const eventMonth = new Date(`${startDate}`).getMonth();

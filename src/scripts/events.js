@@ -1,4 +1,5 @@
 import { today } from './date.js';
+import { clearTable } from './index.js';
 
 export const generateNumbers = (from, to) => {
     const result = [];
@@ -72,4 +73,5 @@ export const renderTimeColumn = () => {
         `).join('');
         
     timeColumn.innerHTML = timeSectors;
+
 };
