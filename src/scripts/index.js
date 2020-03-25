@@ -31,7 +31,10 @@ export const renderEventItem = eventItems => {
     let eventHeight;
     let startPos;
     let id;
-
+    const elements = document.querySelectorAll('.event');
+    for (let eve of elements) {
+        eve.remove();
+    }
     eventItems.sort((a, b) => b.startDate - a.startDate)
         .map(({ title, startDate, endDate, comment }) => {
             const eventDate = new Date(`${startDate}`).getDate();
