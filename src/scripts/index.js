@@ -97,7 +97,7 @@ export const renderEventItem = eventItems => {
 
             for (let sect of document.querySelectorAll('.calendar-section')) {
                 if (Number(new Date(startDate).getMonth()) === Number(sect.getAttribute('data-month-number'))) {
-                    console.log(startDate)
+
                     return dayColumn.append(elem);
                 }
             }
@@ -108,7 +108,7 @@ export const renderEventItem = eventItems => {
 renderEventItem(events);
 
 const saveBtn = document.querySelector('.save-btn');
-const createEvent = () => {
+export const createEvent = () => {
     const eventTitle = document.querySelector('.pop-up__title');
     const date = document.querySelector('.time-set__date');
     const startTime = document.querySelector('.time-set__start');
@@ -143,11 +143,9 @@ saveBtn.addEventListener('click', createEvent);
 /****************************** *********************************/
 
 
-function deleteBtn() {
-    renderEventItem(events);
+export function deleteBtn() {
     const eventsElem = document.querySelectorAll('.event');
     let click = false;
-    console.log(events);
     for (let i = 0; i < eventsElem.length; i++) {
         eventsElem[i].addEventListener('click', function() {
             if (click === false) {
