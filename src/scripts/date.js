@@ -84,7 +84,6 @@ export const setCurrMonth = () => {
 /* Navigation */
 const rightBtn = document.querySelector('.btn-right');
 const getNextWeek = () => {
-    console.log(events);
     getMonday();
     today.setDate(today.getDate() + 7);
     zeroDay += 7;
@@ -102,7 +101,6 @@ rightBtn.addEventListener('click', getNextWeek);
 
 const leftBtn = document.querySelector('.btn-left');
 const getPriviousWeek = () => {
-    console.log(events);
     getMonday();
     today.setDate(today.getDate() - 7);
     zeroDay -= 7;

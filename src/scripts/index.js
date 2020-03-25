@@ -86,7 +86,7 @@ export const renderEventItem = eventItems => {
 
             const deleteBtn = document.createElement('div');
             deleteBtn.style.backgroundColor = "darkgrey";
-            deleteBtn.style.width = "100px";
+            deleteBtn.style.width = "100%";
             deleteBtn.style.height = "40px";
             deleteBtn.style.opacity = "0.9";
             deleteBtn.style.position = "absolute";
@@ -97,6 +97,7 @@ export const renderEventItem = eventItems => {
             deleteBtn.style.alignItems = "center";
             deleteBtn.innerText = "delete";
             deleteBtn.style.cursor = "pointer";
+            deleteBtn.style.fontWeight = "600";
             deleteBtn.setAttribute("id", `delete${id}`);
 
             deleteBtn.style.visibility = "hidden";
