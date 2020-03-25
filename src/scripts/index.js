@@ -157,7 +157,16 @@ export function deleteBtn() {
                 visibleBtn.style.visibility = 'visible';
                 click = true;
                 visibleBtn.addEventListener('click', function() {
-                    eventsElem[i].remove();
+
+                    for (let j = 0; j < events.length; j++) {
+
+                        if (new Date(eventsElem[i].id).getTime() === new Date(events[j].startDate).getTime()) {
+                            const index = events.indexOf(events[j]);
+                            events.splice(index, 1);
+                            console.log(events);
+                        }
+                    }
+                    renderEventItem(events);
                 });
 
             } else if (click === true) {
@@ -166,10 +175,7 @@ export function deleteBtn() {
                 click = false;
             }
         });
-
-
     }
-
 };
 
 deleteBtn();
