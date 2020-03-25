@@ -163,7 +163,6 @@ export function deleteBtn() {
                         if (new Date(eventsElem[i].id).getTime() === new Date(events[j].startDate).getTime()) {
                             const index = events.indexOf(events[j]);
                             events.splice(index, 1);
-                            console.log(events);
                         }
                     }
                     renderEventItem(events);
