@@ -18,7 +18,7 @@ closePopup();
 
 
 export const events = [
-    { title: 'Event', startDate: '03-23-2020 13:00', endDate: '03-23-2020 17:40', comment: 'Create static event by javascript' },
+    { title: 'Event', startDate: '2020-03-23 13:00', endDate: '03-23-2020 17:40', comment: 'Create static event by javascript' },
     { title: 'Event', startDate: '04-24-2020 11:00', endDate: '04-24-2020 14:45', comment: 'Create second static event by javascript' },
     { title: 'Seventy-two week', startDate: '03-28-2020 00:10', endDate: '03-28-2020 02:00', comment: 'U.D.R.P.A' },
     { title: 'BD D', startDate: '09-20-2020 12:10', endDate: '09-20-2020 18:00', comment: 'Birth Day' },
@@ -32,7 +32,7 @@ export const renderEventItem = eventItems => {
     let startPos;
     let id;
 
-    eventItems
+    eventItems.sort((a, b) => b.startDate - a.startDate)
         .map(({ title, startDate, endDate, comment }) => {
             const eventDate = new Date(`${startDate}`).getDate();
             const eventMonth = new Date(`${startDate}`).getMonth();
@@ -41,7 +41,7 @@ export const renderEventItem = eventItems => {
             const endEvent = new Date(`${endDate}`) - new Date(`${startDate}`);
             eventHeight = endEvent / 1000 / 60;
             startPos = (new Date(startEvent).getHours() * 60);
-            id = startEvent;
+            id = startDate;
 
             const getTime = time => {
                 const stringH = time.getHours() <= 9 ?
@@ -77,6 +77,24 @@ export const renderEventItem = eventItems => {
             elem.style.left = "4px";
             elem.style.height = `${eventHeight}px`;
 
+            const deleteBtn = document.createElement('div');
+            deleteBtn.style.backgroundColor = "darkgrey";
+            deleteBtn.style.width = "100px";
+            deleteBtn.style.height = "40px";
+            deleteBtn.style.opacity = "0.9";
+            deleteBtn.style.position = "absolute";
+            deleteBtn.style.top = `${eventHeight+2}px`;
+            deleteBtn.style.borderRadius = "10px";
+            deleteBtn.style.display = "flex";
+            deleteBtn.style.justifyContent = "center";
+            deleteBtn.style.alignItems = "center";
+            deleteBtn.innerText = "delete";
+            deleteBtn.style.cursor = "pointer";
+            deleteBtn.setAttribute("id", `delete${id}`);
+
+            deleteBtn.style.visibility = "hidden";
+            elem.append(deleteBtn)
+
             for (let sect of document.querySelectorAll('.calendar-section')) {
                 if (Number(new Date(startDate).getMonth()) === Number(sect.getAttribute('data-month-number'))) {
                     console.log(startDate)
@@ -84,6 +102,73 @@ export const renderEventItem = eventItems => {
                 }
             }
         });
+
 };
 
 renderEventItem(events);
+
+const saveBtn = document.querySelector('.save-btn');
+const createEvent = () => {
+    const eventTitle = document.querySelector('.pop-up__title');
+    const date = document.querySelector('.time-set__date');
+    const startTime = document.querySelector('.time-set__start');
+    const endTime = document.querySelector('.time-set__end');
+    const eventComment = document.querySelector('.pop-up__comment');
+
+    if (!date.value && !startTime.value && !endTime.value)
+        return false;
+
+    events.push({
+        title: eventTitle.value,
+        startDate: `${date.value} ${startTime.value}`,
+        endDate: `${date.value} ${endTime.value}`,
+        comment: eventComment.value
+    });
+
+    eventTitle.innerHTML = '';
+    date.innerHTML = '';
+    startTime.innerHTML = '';
+    endTime.innerHTML = '';
+    eventComment.innerHTML = '';
+
+    document.getElementById('popup').style.visibility = "hidden";
+    renderEventItem(events);
+    deleteBtn();
+};
+
+saveBtn.addEventListener('click', createEvent);
+
+
+
+/****************************** *********************************/
+
+
+function deleteBtn() {
+    renderEventItem(events);
+    const eventsElem = document.querySelectorAll('.event');
+    let click = false;
+    console.log(events);
+    for (let i = 0; i < eventsElem.length; i++) {
+        eventsElem[i].addEventListener('click', function() {
+            if (click === false) {
+                let eventElem = eventsElem[i].id;
+                const visibleBtn = document.getElementById(`delete${eventElem}`);
+                visibleBtn.style.visibility = 'visible';
+                click = true;
+                visibleBtn.addEventListener('click', function() {
+                    eventsElem[i].remove();
+                });
+
+            } else if (click === true) {
+                let eventElem = eventsElem[i].id;
+                document.getElementById(`delete${eventElem}`).style.visibility = 'hidden';
+                click = false;
+            }
+        });
+
+
+    }
+
+};
+
+deleteBtn();
