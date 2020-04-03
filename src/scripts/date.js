@@ -1,6 +1,7 @@
 import { generateNumbers, renderTimeColumn } from './events.js';
 import { moveRedline, setRedline } from './redline.js';
-import { renderEventItem, events, deleteBtn } from './createEvent.js';
+import { renderEventItem, events } from './createEvent.js';
+import { deleteBtn } from './delete.js';
 import { clickOnItems } from './popup.js';
 
 export let today = new Date();

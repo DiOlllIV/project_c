@@ -1,3 +1,5 @@
+import { deleteBtn } from './delete.js';
+
 export const events = [];
 
 export const clearTable = () => {
@@ -88,7 +90,7 @@ export const renderEventItem = eventItems => {
 };
 
 const saveBtn = document.querySelector('.save-btn');
-export const createEvent = () => {
+const createEvent = () => {
     const eventTitle = document.querySelector('.pop-up__title');
     const date = document.querySelector('.time-set__date');
     const startTime = document.querySelector('.time-set__start');
@@ -105,51 +107,14 @@ export const createEvent = () => {
         comment: eventComment.value
     });
 
-    eventTitle.innerHTML = '';
-    date.innerHTML = '';
-    startTime.innerHTML = '';
-    endTime.innerHTML = '';
-    eventComment.innerHTML = '';
+    eventTitle.value = '';
+    date.value = '';
+    startTime.value = '';
+    endTime.value = '';
+    eventComment.value = '';
 
     document.getElementById('popup').style.visibility = "hidden";
     renderEventItem(events);
     deleteBtn();
 };
 saveBtn.addEventListener('click', createEvent);
-
-export function deleteBtn() {
-    const eventsElem = document.querySelectorAll('.event');
-    let click = false;
-
-    for (let i = 0; i < eventsElem.length; i++) {
-        eventsElem[i].addEventListener('click', function() {
-            if (!click) {
-
-                let eventElem = eventsElem[i].id;
-                const visibleBtn = document.getElementById(`delete${eventElem}`);
-
-                click = true;
-                visibleBtn.style.visibility = 'visible';
-                visibleBtn.addEventListener('click', function() {
-
-                    for (let j = 0; j < events.length; j++) {
-
-                        if (new Date(eventsElem[i].id).getTime() === new Date(events[j].startDate).getTime()) {
-                            document.getElementById(`delete${eventsElem[i].id}`).remove();
-                            const index = events.indexOf(events[j]);
-                            events.splice(index, 1);
-                        }
-                    }
-                    renderEventItem(events);
-                    deleteBtn();
-                });
-
-            } else if (click) {
-                click = false;
-                let eventElem = eventsElem[i].id;
-                document.getElementById(`delete${eventElem}`).style.visibility = 'hidden';
-
-            }
-        });
-    }
-};
