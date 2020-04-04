@@ -1,6 +1,9 @@
-import { events, renderEventItem } from './createEvent.js';
+import { renderEventItem } from './renderEvents.js';
+import { deleteEvent, getEventsList } from './eventsGateway.js';
+import { setItem, getItem } from './storage.js';
 
 export function deleteBtn() {
+    const events = getItem('eventsList');
     const eventsElem = document.querySelectorAll('.event');
     let click = false;
 
@@ -15,15 +18,19 @@ export function deleteBtn() {
                 visibleBtn.style.visibility = 'visible';
                 visibleBtn.addEventListener('click', function() {
 
-                    for (let j = 0; j < events.length; j++) {
+                    for (let j = 0; j < eventsElem.length; j++) {
 
-                        if (new Date(eventsElem[i].id).getTime() === new Date(events[j].startDate).getTime()) {
-                            document.getElementById(`delete${eventsElem[i].id}`).remove();
-                            const index = events.indexOf(events[j]);
-                            events.splice(index, 1);
-                        }
+                        if (!deleteBtn)
+                            return;
+
+                        return deleteEvent(eventElem)
+                            .then(() => getEventsList())
+                            .then(newEventsList => {
+                                setItem('eventsList', newEventsList);
+                                renderEventItem();
+                            })
                     }
-                    renderEventItem(events);
+                    renderEventItem();
                     deleteBtn();
                 });
 
@@ -35,4 +42,20 @@ export function deleteBtn() {
             }
         });
     }
+};
+
+export const deleteBtnElem = e => {
+    const deleteBtn = e.target.classList.contains('deleteBtn');
+
+    if (!deleteBtn)
+        return;
+
+    const eventId = e.target.parentNode.firstElementChild.dataset.id
+
+    return deleteEvent(eventId)
+        .then(() => getEventsList())
+        .then(newEventsList => {
+            setItem('eventsList', newEventsList);
+            renderEventItem();
+        })
 };

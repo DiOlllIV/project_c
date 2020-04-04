@@ -1,8 +1,8 @@
 import { generateNumbers, renderTimeColumn } from './events.js';
 import { moveRedline, setRedline } from './redline.js';
-import { renderEventItem, events } from './createEvent.js';
-import { deleteBtn } from './delete.js';
+import { renderEventItem } from './renderEvents.js';
 import { clickOnItems } from './popup.js';
+import { deleteBtn } from './delete.js';
 
 export let today = new Date();
 let monthDay = new Date().getDate();
@@ -91,7 +91,7 @@ const getNextWeek = () => {
     renderDays();
     setCurrMonth();
     renderTimeColumn();
-    renderEventItem(events);
+    renderEventItem();
     clickOnItems();
     deleteBtn();
     markToday();
@@ -108,8 +108,8 @@ const getPriviousWeek = () => {
     renderDays();
     setCurrMonth();
     renderTimeColumn();
-    renderEventItem(events);
     clickOnItems();
+    renderEventItem();
     deleteBtn();
     markToday();
     setRedline();
@@ -126,8 +126,8 @@ const getActualWeek = () => {
     renderDays();
     setCurrMonth();
     renderTimeColumn();
-    renderEventItem(events);
     clickOnItems();
+    renderEventItem();
     deleteBtn();
     markToday();
     setRedline();
