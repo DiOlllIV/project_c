@@ -12,7 +12,7 @@ export const createEvents = eventsData =>
             'Content-type': 'application/json;charset=utf-8'
         },
         body: JSON.stringify(eventsData)
-    });
+    })
 
 export const updateEvent = (eventId, updateEventData) =>
     fetch(`${baseUrl}/${eventId}`, {
