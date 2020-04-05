@@ -27,7 +27,6 @@ export function deleteBtn() {
                             .then(newEventsList => {
                                 setItem('eventsList', newEventsList);
                                 renderEventItem();
-                                deleteBtn();
                             });
                     }
                 });

@@ -3,7 +3,6 @@ import { renderTimeColumn } from './events.js';
 import { moveRedline, setRedline } from './redline.js';
 import { openPopup, closePopup, clickOnItems } from './popup.js';
 import { renderEventItem } from './renderEvents.js';
-import { deleteBtn } from './delete.js';
 import { setItem } from './storage.js';
 import { getEventsList } from './eventsGateway.js';
 import { initEventsListHandles } from './eventsList.js';
@@ -24,7 +23,6 @@ document.addEventListener('DOMContentLoaded', () => {
             clickOnItems();
             closePopup();
             renderEventItem();
-            deleteBtn();
         });
     initEventsListHandles();
 });
@@ -42,7 +40,6 @@ const onStorageChange = e => {
         clickOnItems();
         closePopup();
         renderEventItem();
-        deleteBtn();
     }
     initEventsListHandles();
 };

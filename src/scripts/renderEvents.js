@@ -1,4 +1,5 @@
 import { getItem } from './storage.js';
+import { deleteBtn } from './delete.js';
 
 const clearTable = () => {
     const elements = document.querySelectorAll('.event');
@@ -84,5 +85,6 @@ export const renderEventItem = () => {
                 }
             }
         });
+    deleteBtn();
     return eventItems;
 };
