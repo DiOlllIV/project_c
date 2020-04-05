@@ -1,9 +1,8 @@
 import { renderEventItem } from './renderEvents.js';
 import { deleteEvent, getEventsList } from './eventsGateway.js';
-import { setItem, getItem } from './storage.js';
+import { setItem } from './storage.js';
 
 export function deleteBtn() {
-    const events = getItem('eventsList');
     const eventsElem = document.querySelectorAll('.event');
     let click = false;
 
@@ -28,10 +27,9 @@ export function deleteBtn() {
                             .then(newEventsList => {
                                 setItem('eventsList', newEventsList);
                                 renderEventItem();
-                            })
+                                deleteBtn();
+                            });
                     }
-                    renderEventItem();
-                    deleteBtn();
                 });
 
             } else if (click) {

@@ -24,11 +24,10 @@ export const renderEventItem = () => {
     let dayColumn;
     let eventHeight;
     let startPos;
-    let id = 0;
 
     clearTable();
     const eventItems = eventsList
-        .map(({ title, startDate, endDate, comment }) => {
+        .map(({ id, title, startDate, endDate, comment }) => {
             const eventDate = new Date(`${startDate}`).getDate();
             const eventMonth = new Date(`${startDate}`).getMonth();
             dayColumn = document.querySelector(`div[data-date-number = "${eventDate}"][data-month-number = "${eventMonth}"]`);
@@ -36,7 +35,6 @@ export const renderEventItem = () => {
             const endEvent = new Date(`${endDate}`) - new Date(`${startDate}`);
             eventHeight = endEvent / 1000 / 60;
             startPos = (new Date(startEvent).getHours() * 60);
-            id++;
 
             const elem = document.createElement('div')
             elem.classList.add('event');
@@ -52,7 +50,6 @@ export const renderEventItem = () => {
 
             elem.append(eventTitle, eventTime, eventComment);
             elem.setAttribute('id', `${id}`);
-
 
             elem.style.backgroundColor = "rgb(100, 150, 235)";
             elem.style.top = (startDate === '00:00') ?
@@ -74,8 +71,8 @@ export const renderEventItem = () => {
             deleteBtn.innerText = "delete";
             deleteBtn.style.cursor = "pointer";
             deleteBtn.style.fontWeight = "600";
-            deleteBtn.setAttribute("id", `delete${id}`);
             deleteBtn.classList.add("deleteBtn");
+            deleteBtn.setAttribute("id", `delete${id}`);
             deleteBtn.style.visibility = "hidden";
 
             elem.append(deleteBtn)

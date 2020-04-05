@@ -2,7 +2,11 @@ import { renderEventItem } from './renderEvents.js';
 import { setItem } from './storage.js';
 import { createEvents, getEventsList } from './eventsGateway.js';
 
+let eventId;
+
 export const createEvent = () => {
+
+    let eventId = 0;
     const eventTitle = document.querySelector('.pop-up__title');
     const date = document.querySelector('.time-set__date');
     const startTime = document.querySelector('.time-set__start');
@@ -13,6 +17,7 @@ export const createEvent = () => {
         return;
 
     const newEvent = {
+        id: eventId,
         title: eventTitle.value,
         startDate: `${date.value} ${startTime.value}`,
         endDate: `${date.value} ${endTime.value}`,
