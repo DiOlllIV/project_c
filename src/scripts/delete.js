@@ -41,19 +41,3 @@ export function deleteBtn() {
         });
     }
 };
-
-export const deleteBtnElem = e => {
-    const deleteBtn = e.target.classList.contains('deleteBtn');
-
-    if (!deleteBtn)
-        return;
-
-    const eventId = e.target.parentNode.firstElementChild.dataset.id
-
-    return deleteEvent(eventId)
-        .then(() => getEventsList())
-        .then(newEventsList => {
-            setItem('eventsList', newEventsList);
-            renderEventItem();
-        })
-};
