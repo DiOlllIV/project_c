@@ -3,7 +3,10 @@ const baseUrl = 'https://5e870549781e48001676b644.mockapi.io/api/v1/calendar';
 export const getEventsList = () =>
     fetch(baseUrl)
     .then(response => response.json())
-    .then(events => events);
+    .then(events => events)
+    .catch(() => {
+        alert("Failed to load");
+    });
 
 export const createEvents = eventsData =>
     fetch(baseUrl, {
