@@ -6,41 +6,6 @@ export function deleteBtn() {
     const eventsElem = document.querySelectorAll('.event');
     let click = false;
 
-    /* for (let i = 0; i < eventsElem.length; i++) {
-        eventsElem[i].addEventListener('click', function() {
-
-            if (!click) {
-
-                let eventElem = eventsElem[i].id;
-                const visibleBtn = document.getElementById(`delete${eventElem}`);
-
-
-                click = true;
-                visibleBtn.style.visibility = 'visible';
-                visibleBtn.addEventListener('click', deleteEventElem);
-
-            } else if (click) {
-                click = false;
-                let eventElem = eventsElem[i].id;
-                document.getElementById(`delete${eventElem}`).style.visibility = 'hidden';
-            }
-        });
-
-        function deleteEventElem() {
-            if (!deleteBtn)
-                return;
-
-            let eventElem = eventsElem[i].id;
-            return deleteEvent(eventElem)
-                .then(() => getEventsList())
-                .then(newEventsList => {
-                    setItem('eventsList', newEventsList);
-                    renderEventItem();
-                });
-        };
-    } */
-    /************************************************************************************************/
-
     eventsElem.forEach(elem => {
 
         const deleteEventElem = () =>

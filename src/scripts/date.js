@@ -18,7 +18,6 @@ export const getMonday = () => {
     }
 };
 
-/* Get Days */
 
 const getDays = () => {
     const result = [];
@@ -45,7 +44,7 @@ export const renderDays = () => {
     daysLine.innerHTML = getDays();
 };
 
-/**** Mark today element ****/
+
 export const markToday = () => {
     if (weekDay === -1) {
         document.querySelector(`[data-day-number="6"]`).classList.add('box-day__week-today');
@@ -57,9 +56,6 @@ export const markToday = () => {
         document.querySelector(`[data-date-number="${monthDay}"]`).parentElement.classList.add('box-day__today');
     }
 };
-
-
-/* Find a Month */
 
 const monthElem = document.querySelector('.title');
 const month = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
@@ -91,7 +87,6 @@ export const forRenderWeeks = () => {
     moveRedline();
 };
 
-/* Navigation */
 const rightBtn = document.querySelector('.btn-right');
 const getNextWeek = () => {
     getMonday();
@@ -110,7 +105,6 @@ const getPriviousWeek = () => {
 };
 leftBtn.addEventListener('click', getPriviousWeek);
 
-/*  Today BTN */
 const todayBtn = document.querySelector('.today-btn');
 const getActualWeek = () => {
     getMonday();

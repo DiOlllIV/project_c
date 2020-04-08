@@ -10,9 +10,6 @@ export const generateNumbers = (from, to) => {
     return result;
 };
 
-
-/* Render Table Events */
-
 const getTimeColumn = () =>
     generateNumbers(1, 23)
     .map(timeItem => `
@@ -32,8 +29,7 @@ const getDaysEvents = () =>
                     data-line-number="${daysEvents}"
                 ></div>
             `).join('');
-       
-            
+               
 const daysEvents = getDaysEvents();    
 const getDaysColumn = () => 
     generateNumbers(0, 6).map(day => {
@@ -48,8 +44,6 @@ const getDaysColumn = () =>
             >${daysEvents}</div>
         `);
     }).join('');
-
-
 
 const timeColumn = document.querySelector('.calendar-column');
 export const renderTimeColumn = () => {
@@ -69,5 +63,4 @@ export const renderTimeColumn = () => {
         `).join('');
         
     timeColumn.innerHTML = timeSectors;
-
 };
