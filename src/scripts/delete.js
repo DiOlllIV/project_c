@@ -44,8 +44,6 @@ export function deleteBtn() {
     eventsElem.forEach(elem => {
 
         function deleteEventElem() {
-            if (!deleteBtn)
-                return;
 
             return deleteEvent(elem.id)
                 .then(() => getEventsList())
