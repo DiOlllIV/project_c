@@ -43,15 +43,14 @@ export function deleteBtn() {
 
     eventsElem.forEach(elem => {
 
-        function deleteEventElem() {
+        const deleteEventElem = () =>
+            deleteEvent(elem.id)
+            .then(() => getEventsList())
+            .then(newEventsList => {
+                setItem('eventsList', newEventsList);
+                renderEventItem();
+            });
 
-            return deleteEvent(elem.id)
-                .then(() => getEventsList())
-                .then(newEventsList => {
-                    setItem('eventsList', newEventsList);
-                    renderEventItem();
-                });
-        };
 
         function activateBtn() {
 
