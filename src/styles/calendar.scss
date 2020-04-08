@@ -38,7 +38,7 @@
     &__week {
         font-size: 12px;
         margin: 8px;
-        &__today {
+        &-today {
             font-size: 12px;
             font-weight: 500;
             margin: 8px;
@@ -48,7 +48,7 @@
     &__month {
         color: rgb(130, 130, 130);
         font-size: 26px;
-        &__today {
+        &-today {
             display: flex;
             align-items: center;
             justify-content: center;
@@ -88,4 +88,19 @@
     opacity: 0.9;
     border-radius: 10px;
     font-size: 12px;
+}
+
+.deleteBtn {
+    visibility: hidden;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    width: 100%;
+    height: 40px;
+    font-weight: 600;
+    background-color: rgba(170, 170, 170);
+    opacity: 0.9;
+    border-radius: 10px;
 }

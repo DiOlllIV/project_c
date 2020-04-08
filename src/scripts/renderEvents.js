@@ -36,7 +36,7 @@ export const renderEventItem = () => {
             const startEvent = new Date(`${startDate}`);
             const endEvent = new Date(`${endDate}`) - new Date(`${startDate}`);
             eventHeight = endEvent / 1000 / 60;
-            startPos = (new Date(startEvent).getHours() * 60);
+            startPos = (new Date(startEvent).getHours() * 60) + new Date(startEvent).getMinutes();
 
             const elem = document.createElement('div')
             elem.classList.add('event');
@@ -60,22 +60,10 @@ export const renderEventItem = () => {
             elem.style.height = `${eventHeight}px`;
 
             const deleteBtn = document.createElement('div');
-            deleteBtn.style.backgroundColor = "darkgrey";
-            deleteBtn.style.width = "100%";
-            deleteBtn.style.height = "40px";
-            deleteBtn.style.opacity = "0.9";
-            deleteBtn.style.position = "absolute";
-            deleteBtn.style.top = `${eventHeight+2}px`;
-            deleteBtn.style.borderRadius = "10px";
-            deleteBtn.style.display = "flex";
-            deleteBtn.style.justifyContent = "center";
-            deleteBtn.style.alignItems = "center";
-            deleteBtn.innerText = "delete";
-            deleteBtn.style.cursor = "pointer";
-            deleteBtn.style.fontWeight = "600";
             deleteBtn.classList.add("deleteBtn");
             deleteBtn.setAttribute("id", `delete${id}`);
-            deleteBtn.style.visibility = "hidden";
+            deleteBtn.style.top = `${eventHeight+2}px`;
+            deleteBtn.innerText = "delete";
 
             elem.append(deleteBtn)
 

@@ -10,8 +10,8 @@ export const createEvent = () => {
     const startTime = document.querySelector('.time-set__start');
     const endTime = document.querySelector('.time-set__end');
     const eventComment = document.querySelector('.pop-up__comment');
-
-    if (!date.value && !startTime.value && !endTime.value)
+    const introducedDateValue = date.value && startTime.value && endTime.value;
+    if (!introducedDateValue)
         return;
 
     const newEvent = {
@@ -29,7 +29,7 @@ export const createEvent = () => {
     eventComment.value = '';
 
     createEvents(newEvent)
-        .then(() => getEventsList())
+        .then(getEventsList)
         .then(newEventsList => {
             setItem('eventsList', newEventsList);
             renderEventItem();

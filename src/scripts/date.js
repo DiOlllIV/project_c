@@ -48,12 +48,12 @@ export const renderDays = () => {
 /**** Mark today element ****/
 export const markToday = () => {
     if (weekDay === -1) {
-        document.querySelector(`[data-day-number="6"]`).classList.add('box-day__week__today');
-        document.querySelector(`[data-date-number="${monthDay}"]`).classList.add('box-day__month__today');
+        document.querySelector(`[data-day-number="6"]`).classList.add('box-day__week-today');
+        document.querySelector(`[data-date-number="${monthDay}"]`).classList.add('box-day__month-today');
         document.querySelector(`[data-date-number="${monthDay}"]`).parentElement.classList.add('box-day__today');
     } else {
-        document.querySelector(`[data-day-number="${weekDay}"]`).classList.add('box-day__week__today');
-        document.querySelector(`[data-date-number="${monthDay}"]`).classList.add('box-day__month__today');
+        document.querySelector(`[data-day-number="${weekDay}"]`).classList.add('box-day__week-today');
+        document.querySelector(`[data-date-number="${monthDay}"]`).classList.add('box-day__month-today');
         document.querySelector(`[data-date-number="${monthDay}"]`).parentElement.classList.add('box-day__today');
     }
 };
@@ -80,13 +80,7 @@ export const setCurrMonth = () => {
     popupMonth = new Date(today).getMonth() + 1;
 };
 
-
-/* Navigation */
-const rightBtn = document.querySelector('.btn-right');
-const getNextWeek = () => {
-    getMonday();
-    today.setDate(today.getDate() + 7);
-    zeroDay += 7;
+export const forRenderWeeks = () => {
     renderDays();
     setCurrMonth();
     renderTimeColumn();
@@ -95,6 +89,15 @@ const getNextWeek = () => {
     markToday();
     setRedline();
     moveRedline();
+};
+
+/* Navigation */
+const rightBtn = document.querySelector('.btn-right');
+const getNextWeek = () => {
+    getMonday();
+    today.setDate(today.getDate() + 7);
+    zeroDay += 7;
+    forRenderWeeks();
 };
 rightBtn.addEventListener('click', getNextWeek);
 
@@ -103,30 +106,17 @@ const getPriviousWeek = () => {
     getMonday();
     today.setDate(today.getDate() - 7);
     zeroDay -= 7;
-    renderDays();
-    setCurrMonth();
-    renderTimeColumn();
-    clickOnItems();
-    renderEventItem();
-    markToday();
-    setRedline();
-    moveRedline();
+    forRenderWeeks();
 };
 leftBtn.addEventListener('click', getPriviousWeek);
 
 /*  Today BTN */
 const todayBtn = document.querySelector('.today-btn');
 const getActualWeek = () => {
+    getMonday();
     today = new Date();
     zeroDay = 0;
     getMonday();
-    renderDays();
-    setCurrMonth();
-    renderTimeColumn();
-    clickOnItems();
-    renderEventItem();
-    markToday();
-    setRedline();
-    moveRedline();
+    forRenderWeeks();
 };
 todayBtn.addEventListener('click', getActualWeek);

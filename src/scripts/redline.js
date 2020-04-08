@@ -13,22 +13,18 @@ redline.append(redlineLine);
 
 export function setRedline() {
 
-    let hour = new Date().getHours();
-    let minutes = Number(new Date().getMinutes());
+    const hour = new Date().getHours();
+    const minutes = Number(new Date().getMinutes());
 
-    let actualDaycolumn
-    let daysElem;
-    let redlineStyle;
-
-    actualDaycolumn = document.querySelector(`div[data-date-number = "${new Date().getDate()}"][data-month-number = "${new Date().getMonth()}"]`);
-    daysElem = actualDaycolumn.querySelectorAll('[data-line-number]');
+    const actualDaycolumn = document.querySelector(`div[data-date-number = "${new Date().getDate()}"][data-month-number = "${new Date().getMonth()}"]`);
+    const daysElem = actualDaycolumn.querySelectorAll('[data-line-number]');
 
     for (let elem of daysElem) {
         if (Number(elem.getAttribute('data-line-number')) === hour)
             elem.append(redline);
     }
 
-    redlineStyle = document.getElementById('redlineId').style.paddingTop = `${minutes}px`;
+    const redlineStyle = document.getElementById('redlineId').style.paddingTop = `${minutes}px`;
     return redlineStyle;
 };
 

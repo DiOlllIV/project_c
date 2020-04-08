@@ -23,3 +23,8 @@ export function clickOnItems() {
         elem.addEventListener('click', openPopup);
     }
 };
+
+export const popupActions = () => {
+    openPopup();
+    closePopup();
+};

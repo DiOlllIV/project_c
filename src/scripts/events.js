@@ -35,23 +35,20 @@ const getDaysEvents = () =>
        
             
 const daysEvents = getDaysEvents();    
-const getDaysColumn = () => {
-    const result = [];
+const getDaysColumn = () => 
     generateNumbers(0, 6).map(day => {
 
         const newDay = new Date(today);
         newDay.setDate(newDay.getDate() + day);
-        result.push(`
+        return (`
             <div
                 class="calendar-section"
                 data-date-number="${new Date(newDay).getDate()}"
                 data-month-number="${new Date(newDay).getMonth()}"
             >${daysEvents}</div>
         `);
-    });
+    }).join('');
 
-    return result.join('');
-}; 
 
 
 const timeColumn = document.querySelector('.calendar-column');
